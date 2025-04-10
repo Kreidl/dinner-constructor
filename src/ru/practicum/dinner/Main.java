@@ -18,6 +18,7 @@ public class Main {
             switch (command) {
                 case "1":
                     addNewDish();
+
                     break;
                 case "2":
                     generateDishCombo();

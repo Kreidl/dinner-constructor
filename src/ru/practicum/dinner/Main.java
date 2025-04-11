@@ -25,7 +25,11 @@ public class Main {
                     generateDishCombo();
                     break;
                 case "3":
+                    System.out.println("Программа завершена. Хорошего дня!");
                     return;
+                default:
+                    System.out.println("Неверная команда.");
+
             }
         }
     }
@@ -46,25 +50,28 @@ public class Main {
     }
 
     private static void generateDishCombo() {
-        System.out.println("Начинаем конструировать обед...");
+        if (dc.isDishListEmpty()) {
+            System.out.println("Список блюд пуст.");
+        } else {
+            System.out.println("Начинаем конструировать обед...");
+            System.out.println("Введите количество наборов, которые нужно сгенерировать:");
+            int numberOfCombos = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("Введите количество наборов, которые нужно сгенерировать:");
-        int numberOfCombos = scanner.nextInt();
-        scanner.nextLine();
+            System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
+            String nextItem = scanner.nextLine();
+            ArrayList<String> personalDishTypes = new ArrayList<>();
 
-        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
-        String nextItem = scanner.nextLine();
-        ArrayList<String> personalDishTypes = new ArrayList<>();
-
-        while (!nextItem.isEmpty()) {
-            if (dc.searchDishType(nextItem)) {
-                personalDishTypes.add(nextItem);
-                nextItem = scanner.nextLine();
-            } else {
-                System.out.println("Такого типа блюда нет в наличии.");
-                nextItem = scanner.nextLine();
+            while (!nextItem.isEmpty()) {
+                if (dc.searchDishType(nextItem)) {
+                    personalDishTypes.add(nextItem);
+                    nextItem = scanner.nextLine();
+                } else {
+                    System.out.println("Такого типа блюда нет в наличии.");
+                    nextItem = scanner.nextLine();
+                }
             }
+            dc.generateDishCombo(numberOfCombos, personalDishTypes);
         }
-        dc.generateDishCombo(numberOfCombos, personalDishTypes);
     }
 }

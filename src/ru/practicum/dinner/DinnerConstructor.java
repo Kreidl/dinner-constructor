@@ -29,6 +29,10 @@ public class DinnerConstructor {
             System.out.println(combo);
         }
     }
+
+    boolean isDishListEmpty () {
+        return dishes.isDishListEmpty();
+    }
 }
 
 

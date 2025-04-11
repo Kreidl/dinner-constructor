@@ -32,6 +32,10 @@ public class Dishes {
     ArrayList<String> getDishes(String typeOfDishes) {
         return dishesPerTypes.get(typeOfDishes);
     }
+
+    boolean isDishListEmpty () {
+        return dishesPerTypes.isEmpty();
+    }
 }
 
 
